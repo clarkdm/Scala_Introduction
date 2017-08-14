@@ -1,0 +1,6 @@
+object Main {
+
+
+  Main
+
+}
