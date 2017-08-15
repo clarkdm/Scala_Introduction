@@ -46,6 +46,39 @@ object Main {
     println(operators_2(0, 0, true))
     println(operators_2(0, 0, false))
 
+
+    println()
+    var x = List(1, 2, 3, 4)
+    var b = (1, 2)
+
+    println(b)
+    println(swap(b))
+    println(x)
+    println(swap(x))
+
+    println()
+
+    println(blackJack(1, 1))
+    println(blackJack(21, 1))
+    println(blackJack(10, 21))
+    println(blackJack(21, 21))
+    println(blackJack(22, 1))
+    println(blackJack(1, 22))
+    println(blackJack(22, 22))
+
+    println("uniqueSum")
+
+    println(uniqueSum(1, 2, 3))
+    println(uniqueSum(3, 3, 3))
+    println(uniqueSum(1, 1, 3))
+    println(uniqueSum(1, 3, 3))
+    println(uniqueSum(2, 3, 2))
+
+    println("Too hot?")
+    println(tooHot(80,false))
+    println(tooHot(100,false))
+    println(tooHot(100,true))
+    println()
   }
 
 
@@ -182,19 +215,57 @@ object Main {
 
   }
 
-  def swap(a:Any):Any = a match {
+  def swap(a: Any): Any = a match {
 
-    case a: List[Any] => a.reverse
-    case a: Array[Any] => a.reverse
+    case Nil => Nil
+    case a :: r :: _ => (r, a)
+    case a :: r => (r, a)
+
+
+    //case a: Array[Any] => a.reverse
     case a: Tuple1[Any] => a
-    case a: Tuple2[Any,Any] => swap(a._2)::a._1
-
-    // case _ => List('a','d')
-
-    //case y: Array :: Nil => List(x)
+    case a: (Any, Any) => (a._2, a._1)
+    case _ => a
 
   }
 
 
+  def blackJack(a: Int, b: Int): Int = (a, b) match {
+    case (a, b) if (a == b && a > 21) => 0
+    case (a, b) if (a > 21 && b > 21) => 0
+    case (a, b) if (a > 21 && b <= 21) => b
+    case (a, b) if (a <= 21 && b > 21) => a
+
+    case (a, b) if (a == b) => a
+    case (a, b) if (b > a) => b
+    case (a, b) if (a > b) => a
+  }
+
+  def uniqueSum(z: Int, x: Int, c: Int) = {
+    var t = 0
+    if (z == x && x == c) {
+      t = 0
+    }
+    if (z != x && x == c) {
+      t = z
+    }
+    if (z == x && x != c) {
+      t = c
+    }
+    if (z == c && x != c) {
+      t = x
+    }
+    if ((z != x) && (x != c) && (c != z)) {
+      t = z + x + c
+    }
+    t
+
+  }
+
+  def tooHot(temperature:Int,isSummer:Boolean):Boolean =isSummer match {
+    case false if(temperature>=60&&temperature<=90)=>true
+    case true if(temperature>=90&&temperature<=100)=>true
+    case _ => false
+  }
 
 }
