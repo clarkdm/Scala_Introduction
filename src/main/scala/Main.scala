@@ -75,9 +75,9 @@ object Main {
     println(uniqueSum(2, 3, 2))
 
     println("Too hot?")
-    println(tooHot(80,false))
-    println(tooHot(100,false))
-    println(tooHot(100,true))
+    println(tooHot(80, false))
+    println(tooHot(100, false))
+    println(tooHot(100, true))
     println()
   }
 
@@ -262,9 +262,9 @@ object Main {
 
   }
 
-  def tooHot(temperature:Int,isSummer:Boolean):Boolean =isSummer match {
-    case false if(temperature>=60&&temperature<=90)=>true
-    case true if(temperature>=90&&temperature<=100)=>true
+  def tooHot(temperature: Int, isSummer: Boolean): Boolean = isSummer match {
+    case false if (temperature >= 60 && temperature <= 90) => true
+    case true if (temperature >= 90 && temperature <= 100) => true
     case _ => false
   }
 
