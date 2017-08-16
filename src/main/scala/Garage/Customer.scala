@@ -16,4 +16,6 @@ class Customer(id: Int, f: String, s: String) extends Person {
   def get_s_name(): String = {
     s_name
   }
+
+  override def toString = s"Customer(get_p_id=$get_p_id, get_f_name=$get_f_name, get_s_name=$get_s_name)"
 }

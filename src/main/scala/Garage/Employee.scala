@@ -35,12 +35,5 @@ class Employee(id: Int, f: String, s: String) extends Person {
   }
 
 
-
-
-
-
-
-
-
-
+  override def toString = s"Employee(get_p_id=$get_p_id, get_f_name=$get_f_name, get_s_name=$get_s_name, get_s_v_id=$get_s_v_id, is_available=$is_available)"
 }
