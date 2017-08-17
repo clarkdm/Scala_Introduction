@@ -7,7 +7,7 @@ class Bike(z: Int, x: Int, c: String, t_parts: List[Part]) extends Vehicle {
   override val p_id = x
   override val v_make = c
 
-  override var bill = 0
+
   var parts: List[Part] = t_parts
 
   def get_time(): Int = {
@@ -29,11 +29,11 @@ class Bike(z: Int, x: Int, c: String, t_parts: List[Part]) extends Vehicle {
     x
   }
 
-  def get_£(): Double = {
+  def get_bill(): Double = {
     var x: Double = 0
     for (p <- parts) {
       if (p.broken) {
-        x += p.£
+        x += p.bill
       }
     }
     x
@@ -62,21 +62,23 @@ class Bike(z: Int, x: Int, c: String, t_parts: List[Part]) extends Vehicle {
     for (p <- parts) {
       if (p.broken) {
         p.broken = false
-        x = p.£
+        x = p.bill
       }
     }
     x
   }
 
-  override def fix_All(): Double = {
-    var x = 0
+  override def fix_All(): (Int,Double) = {
+    var x:Double = 0
+    var z = 0
     for (p <- parts) {
       if (p.broken) {
         p.broken = false
-        x += p.£
+        x += p.bill
+        z+= p.time
       }
     }
-    x
+    (z,x)
   }
 
 
@@ -93,12 +95,10 @@ class Bike(z: Int, x: Int, c: String, t_parts: List[Part]) extends Vehicle {
   }
 
 
-  def get_bill(): Int = {
-    bill
-  }
 
 
-  override def toString = s"Car(v_id=$v_id, p_id=$p_id, v_make=$v_make, get_time=$get_time, get_No_Broken=$get_No_Broken, get_£=$get_£)"
+  override def toString = s"Car(v_id=$v_id, p_id=$p_id, v_make=$v_make, parts=$parts)"
+
 
 }
 

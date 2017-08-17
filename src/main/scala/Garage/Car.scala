@@ -4,7 +4,7 @@ class Car(t_v_id: Int = 0, t_p_id: Int = 0, t_v_make: String = "", t_parts: List
   override val v_id = t_v_id
   override val p_id = t_p_id
   override val v_make = t_v_make
-  override var bill = 0
+
   var parts: List[Part] = t_parts
 
 
@@ -28,11 +28,11 @@ class Car(t_v_id: Int = 0, t_p_id: Int = 0, t_v_make: String = "", t_parts: List
     x
   }
 
-  def get_£(): Double = {
+  def get_bill(): Double = {
     var x: Double = 0
     for (p <- parts) {
       if (p.broken) {
-        x += p.£
+        x += p.bill
       }
     }
     x
@@ -61,21 +61,23 @@ class Car(t_v_id: Int = 0, t_p_id: Int = 0, t_v_make: String = "", t_parts: List
     for (p <- parts) {
       if (p.broken) {
         p.broken = false
-        x = p.£
+        x = p.bill
       }
     }
     x
   }
 
-  override def fix_All(): Double = {
-    var x = 0
+  override def fix_All(): (Int,Double) = {
+    var x:Double = 0
+    var z = 0
     for (p <- parts) {
       if (p.broken) {
         p.broken = false
-        x += p.£
+        x += p.bill
+        z+= p.time
       }
     }
-    x
+    (z,x)
   }
 
   def get_v_id(): Int = {
@@ -90,14 +92,6 @@ class Car(t_v_id: Int = 0, t_p_id: Int = 0, t_v_make: String = "", t_parts: List
     v_make
   }
 
-  def get_bill(): Int = {
-    bill
-  }
 
-  def set_fixed(x: Boolean) = {
-    fixed = x
-  }
-
-
-  override def toString = s"Car(v_id=$v_id, p_id=$p_id, v_make=$v_make, get_time=$get_time, get_No_Broken=$get_No_Broken, get_£=$get_£)"
+  override def toString = s"Car(v_id=$v_id, p_id=$p_id, v_make=$v_make, parts=$parts)"
 }
