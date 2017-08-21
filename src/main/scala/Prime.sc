@@ -1,12 +1,9 @@
 import scala.collection.mutable.ListBuffer
 
-//val test_1 = (2 to 30).toList
-//val test_1 = (2 to 100000).toList
-//val test_1 = (1000000 to 3000000 ).toList
 
 
 println(Prime_List((2 to 100000).toList).size)
-println("hi")
+
 
 def Prime_List(targets: List[Int]): List[Int] = {
 
