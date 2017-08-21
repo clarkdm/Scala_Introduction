@@ -5,7 +5,7 @@ abstract class Vehicle {
   val p_id: Int
   val v_make: String
 
-  var bill: Int
+
   var parts: List[Part]
 
 
@@ -13,7 +13,7 @@ abstract class Vehicle {
 
   def get_No_Broken(): Int
 
-  def get_£(): Double
+  def get_bill(): Double
 
   def get_Not_fixed(): String
 
@@ -29,12 +29,11 @@ abstract class Vehicle {
   def get_v_make(): String
 
 
-  def get_bill(): Int
 
-  def fix_All(): Int
+  def fix_All(): (Int,Double)
 
 
-  override def toString = s"Car(v_id=$v_id, p_id=$p_id, v_make=$v_make, get_time=$get_time, get_No_Broken=$get_No_Broken, get_£=$get_£)"
+  override def toString = s"Car(v_id=$v_id, p_id=$p_id, v_make=$v_make, get_time=$get_time, get_No_Broken=$get_No_Broken, get_bill=$get_bill)"
 
 
 }
