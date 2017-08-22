@@ -44,10 +44,10 @@ object RockPaperScissors {
     var past_turns_2: ListBuffer[Char] = new ListBuffer[Char]
     var ai_1_score = 0
     var ai_2_score = 0
-    for (x <- 0 to 1000000) {
+    for (x <- 0 to 10000) {
       println("AI_1: " + ai_1_score + "  AI_2:" + ai_2_score)
 
-      past_turns_1 += ai_2(past_turns_2)
+      past_turns_1 += ai_1(past_turns_2)
       past_turns_2 += ai_2(past_turns_1)
       val temp = rock_paper_scissors(past_turns_1(past_turns_1.size - 1), past_turns_2(past_turns_2.size - 1))
       if (temp == 1) ai_1_score += 1
@@ -61,28 +61,29 @@ object RockPaperScissors {
   }
 
   def ai_2(past_turns: ListBuffer[Char]): Char = {
-    var r = 0
-    var p = 0
-    var s = 0
-    for (turn <- past_turns) {
-      if (turn == 'r') r += 1
-      if (turn == 'p') p += 1
-      if (turn == 's') s += 1
-    }
+    get_most_comen(get_total(past_turns.toList))
+  }
 
-    if (r > p & r > s) 'p'
-    else if (s > r & s > p) 'r'
-    else if (p > s & p > r) 's'
-    else {
-      val num = scala.util.Random
-      val temp = num.nextInt(3)
-      if (temp==1) 'p'
-      else if (temp==2) 'r'
-      else if (temp==3) 's'
-      else 's'
+  def get_total(past_turns: List[Char], sub_total: (Int, Int, Int) = (0, 0, 0)): (Int, Int, Int) = past_turns match {
+    case 'r' :: rest => get_total(rest, (sub_total._1+1,sub_total._2,sub_total._3))
+    case 'p' :: rest => get_total(rest, (sub_total._1,sub_total._2+1,sub_total._3))
+    case 's' :: rest => get_total(rest, (sub_total._1,sub_total._2,sub_total._3+1))
+    case Nil => sub_total
+  }
 
+  def get_Random(): Char = scala.util.Random.nextInt(3) match {
+    case 1 => 'p'
+    case 2 => 'r'
+    case 3 => 's'
+    case _ => get_Random()
+  }
 
-    }
+  def get_most_comen(total: (Int, Int, Int)): Char = total match {
+    case (0, 0, 0) => get_Random()
+    case (r, p, s) if (r > p & r > s) => 'p'
+    case (r, p, s) if (s > r & s > p) => 'r'
+    case (r, p, s) if (p > s & p > r) => 's'
+    case (_, _, _) => get_Random()
   }
 
   def parse_char(a: Any): Char = a match {
