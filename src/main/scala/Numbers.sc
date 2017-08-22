@@ -1,25 +1,17 @@
 
-l_scale("1234567891111")
-s_scale("1234567891111")
+scale("1234567891111",'s')
+scale("1234567891111",'l')
 
 
-def s_scale(n: String): String = n match {
-  case "" => ""
-  case n if n.length < 4 => n.toString
-  case n if n.length < 7 => n.substring(0,n.length-3)+ " thousand and " + s_scale(n.substring(n.length-3,n.length))
-  case n if n.length < 10 => n.substring(0,n.length-6)+ " million, " + s_scale(n.substring(n.length-6,n.length))
-  case n if n.length < 13 => n.substring(0,n.length-9)+ " billion, " + s_scale(n.substring(n.length-9,n.length))
-  case n if n.length < 16 => n.substring(0,n.length-12)+ " trillion, " + s_scale(n.substring(n.length-12,n.length))
-
-  case n => ""
-}
-def l_scale(n: String): String = n match {
-  case "" => ""
-  case n if n.length < 4 => n.toString
-  case n if n.length < 7 => n.substring(0,n.length-3)+ " thousand and " + l_scale(n.substring(n.length-3,n.length))
-  case n if n.length < 10 => n.substring(0,n.length-6)+ " million, " + l_scale(n.substring(n.length-6,n.length))
-  case n if n.length < 13 => n.substring(0,n.length-9)+ " milliard, " + l_scale(n.substring(n.length-9,n.length))
-  case n if n.length < 16 => n.substring(0,n.length-12)+ " billion, " + l_scale(n.substring(n.length-12,n.length))
-
-  case n => ""
+def scale(n: String, scale_Tipe: Char): String = (n, scale_Tipe) match {
+  case ("", _) => ""
+  case (n, _) if n.length < 4 => n.toString
+  case (n, 's') if n.length < 7 => n.substring(0, n.length - 3) + " thousand and " + scale(n.substring(n.length - 3, n.length), scale_Tipe)
+  case (n, 's') if n.length < 10 => n.substring(0, n.length - 6) + " million, " + scale(n.substring(n.length - 6, n.length), scale_Tipe)
+  case (n, 's') if n.length < 13 => n.substring(0, n.length - 9) + " billion, " + scale(n.substring(n.length - 9, n.length), scale_Tipe)
+  case (n, 's') if n.length < 16 => n.substring(0, n.length - 12) + " trillion, " + scale(n.substring(n.length - 12, n.length), scale_Tipe)
+  case (n, 'l') if n.length < 7 => n.substring(0, n.length - 3) + " thousand and " + scale(n.substring(n.length - 3, n.length), scale_Tipe)
+  case (n, 'l') if n.length < 10 => n.substring(0, n.length - 6) + " million, " + scale(n.substring(n.length - 6, n.length), scale_Tipe)
+  case (n, 'l') if n.length < 13 => n.substring(0, n.length - 9) + " milliard, " + scale(n.substring(n.length - 9, n.length), scale_Tipe)
+  case (n, 'l') if n.length < 16 => n.substring(0, n.length - 12) + " billion, " + scale(n.substring(n.length - 12, n.length), scale_Tipe)
 }
