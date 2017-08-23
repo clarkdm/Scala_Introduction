@@ -25,9 +25,9 @@ object Hangman {
     println(guesses)
     val guess_char = parse_char(scala.io.StdIn.readLine())
 
-    if (w.toUpperCase.contains(guess_char)) {
+    if (word.toUpperCase.contains(guess_char)) {
       if (guesses.concat(guess_char.toString).toUpperCase.contains(word)) println(s"win\n\n$word\n$guesses$guess_char")
-      else run(word, guesses.concat(c.toString), board)
+      else run(word, guesses.concat(guess_char.toString), board)
     } else {
       board.add()
       if (!board.game_O()) run(word, guesses.concat(guess_char.toString), board)
