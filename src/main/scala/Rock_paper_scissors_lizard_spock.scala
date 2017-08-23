@@ -1,11 +1,6 @@
 import scala.collection.mutable.ListBuffer
 
-object Rock_paper_scissors_lizard_spock {
-
-  def main(args: Array[String]): Unit = {
-    run_ai_ai()
-  }
-
+class Rock_paper_scissors_lizard_spock extends RPS {
 
   def rock_paper_scissors(player_1: String, player_2: String): Int = (player_1, player_2) match {
     case (a, b) if a == b => 0
@@ -75,13 +70,15 @@ object Rock_paper_scissors_lizard_spock {
       else if (temp == 2) ai_2_score += 1
     }
   }
-
-  def ai_1(past_turns: ListBuffer[String]): String = {
+  override def ai_0(): String = {
+    get_Random()
+  }
+  override def ai_1(past_turns: ListBuffer[String]): String = {
     if (past_turns.size > 1) past_turns(past_turns.size - 2)
     else "paper"
   }
 
-  def ai_2(past_turns: ListBuffer[String]): String = {
+  override def ai_2(past_turns: ListBuffer[String]): String = {
     get_most_comen(get_total(past_turns.toList))
   }
 
@@ -94,7 +91,7 @@ object Rock_paper_scissors_lizard_spock {
     case Nil => sub_total
   }
 
-  def get_Random(): String = scala.util.Random.nextInt(5) match {
+  def get_Random(): String = scala.util.Random.nextInt(6) match {
     case 1 => "paper"
     case 2 => "rock"
     case 3 => "scissors"
@@ -123,5 +120,5 @@ object Rock_paper_scissors_lizard_spock {
     case _ => "rock"
   }
 
-
+  override def run_ai_ai(num: Int): Unit = ???
 }

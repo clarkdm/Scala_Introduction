@@ -1,9 +1,9 @@
 import scala.collection.mutable.ListBuffer
 
-object Rock_paper_scissors_lizard_spock_And_More {
+class Rock_paper_scissors_And_More extends RPS {
 
   def main(args: Array[String]): Unit = {
-    println(run())
+    //run_all_V_all(10)
 
 
   }
@@ -46,8 +46,8 @@ object Rock_paper_scissors_lizard_spock_And_More {
       println("r" + " : rock")
       past_turns += parse_char(scala.io.StdIn.readLine())
       val ai = ai_1()
-      println(past_turns(past_turns.size - 1) +" V "+ ai)
-      val temp = rock_paper_scissors(past_turns(past_turns.size - 1),ai )
+      println(past_turns(past_turns.size - 1) + " V " + ai)
+      val temp = rock_paper_scissors(past_turns(past_turns.size - 1), ai)
 
       if (temp == 1) p1_score += 1
       else if (temp == 2) ai_score += 1
@@ -57,7 +57,8 @@ object Rock_paper_scissors_lizard_spock_And_More {
   def ai_1(): String = {
     get_Random()
   }
-  def get_Random(): String = scala.util.Random.nextInt(15) match {
+
+  def get_Random(): String = scala.util.Random.nextInt(16) match {
     case 1 => "gun"
     case 2 => "lightning"
     case 3 => "devil"
@@ -66,7 +67,7 @@ object Rock_paper_scissors_lizard_spock_And_More {
     case 6 => "air"
     case 7 => "paper"
     case 8 => "sponge"
-    case 9 =>  "wolf"
+    case 9 => "wolf"
     case 10 => "tree"
     case 11 => "human"
     case 12 => "snake"
@@ -96,4 +97,10 @@ object Rock_paper_scissors_lizard_spock_And_More {
 
     case _ => "rock"
   }
+
+  override def ai_0(): String = {
+    get_Random()
+  }
+
+  override def run_ai_ai(num: Int): Unit = ???
 }
