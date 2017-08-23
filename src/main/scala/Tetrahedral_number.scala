@@ -1,7 +1,7 @@
 object Tetrahedral_number {
 
-
   def main(args: Array[String]): Unit = {
+
 val n:Double =  169179692512835000.0D
     println(get_base(n))
   }
@@ -11,6 +11,7 @@ val n:Double =  169179692512835000.0D
     while (num != ((n * (n + 1) * (n + 2)) / 6)){
       n+=1
     }
+    println(n)
     num-(((n-1) * ((n-1) + 1) * ((n-1) + 2)) / 6)
   }
 }
