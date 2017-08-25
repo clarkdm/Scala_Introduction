@@ -26,11 +26,9 @@ def prints_all(n: Array[Int],min:Int=2147483647):Unit = n.isEmpty match {
   case true =>
   case false => println(n.head);prints_all(n.tail)
 }
-sum_2(-4411)
+sum_2(4419)
 def sum_2(n: Int): Int = n match {
   case 0 => 0
   case n if n<0 => sum_2(-n)
   case n => n%10 + sum_2(n/10 )
 }
-
-
